@@ -1,0 +1,18 @@
+<ng-container *ngIf="canShow">
+    <div class="in-back"></div>
+
+    <div class="center-spinner">
+        <mat-spinner
+            mode="indeterminate"
+            [diameter]="50"
+            [color]="colour"
+        ></mat-spinner>
+        <mat-spinner
+            *ngIf="canStartSpinning"
+            class="bigger"
+            mode="indeterminate"
+            [diameter]="70"
+            [color]="colourSwitched"
+        ></mat-spinner>
+    </div>
+</ng-container>

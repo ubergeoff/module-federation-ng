@@ -1,0 +1,30 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@nx-mf-demo/shared/auth-lib": [
+                "libs/shared/auth-lib/src/index.ts"
+            ],
+            "@nx-mf-demo/mfe1/feature-search": [
+                "libs/mfe1/feature-search/src/index.ts"
+            ],
+            "@nx-mf-demo/mfe1/feature-book": [
+                "libs/mfe1/feature-book/src/index.ts"
+            ]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
+}

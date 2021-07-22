@@ -1,0 +1,30 @@
+{
+    "npmScope": "nx-mf-demo",
+    "affected": { "defaultBase": "main" },
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": { "dependencies": "*", "devDependencies": "*" },
+        "tsconfig.base.json": "*",
+        "tslint.json": "*",
+        ".eslintrc.json": "*",
+        "nx.json": "*"
+    },
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e"]
+            }
+        }
+    },
+    "projects": {
+        "shell-e2e": { "tags": [], "implicitDependencies": ["shell"] },
+        "mfe1-e2e": { "tags": [], "implicitDependencies": ["mfe1"] },
+        "shell": { "tags": ["scope:shell"] },
+        "mfe1": { "tags": ["scope:mfe1"] },
+        "shared-auth-lib": { "tags": ["scope:shared"] },
+        "mfe1-feature-search": { "tags": ["scope:mfe1"] },
+        "mfe1-feature-book": { "tags": ["scope:mfe1"] },
+        "shared-one-time": { "tags": [] }
+    }
+}
