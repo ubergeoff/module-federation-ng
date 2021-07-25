@@ -1,10 +1,12 @@
+const { getJestProjects } = require('@nrwl/jest');
+
 module.exports = {
-  projects: [
-    '<rootDir>/apps/shell',
-    '<rootDir>/apps/mfe1',
-    <rootDir>/libs/shared/auth-lib,
-    <rootDir>/libs/mfe1/mfe1-feature-search,
-    <rootDir>/libs/mfe1/mfe1-feature-book,
-  ],
+    projects: [
+        ...getJestProjects(),
+        '<rootDir>/apps/shell',
+        '<rootDir>/apps/mfe1',
+        '<rootDir>/libs/shared/auth-lib',
+        '<rootDir>/libs/mfe1/mfe1-feature-search',
+        '<rootDir>/libs/mfe1/mfe1-feature-book',
+    ],
 };
-,"<rootDir>/libs/shared/one-time"

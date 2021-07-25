@@ -1,395 +1,415 @@
 {
-    "version": 1,
-    "projects": {
-        "shell": {
-            "projectType": "application",
-            "root": "apps/shell",
-            "sourceRoot": "apps/shell/src",
-            "prefix": "nx-mf-demo",
-            "architect": {
-                "build": {
-                    "builder": "ngx-build-plus:browser",
-                    "options": {
-                        "outputPath": "dist/apps/shell",
-                        "index": "apps/shell/src/index.html",
-                        "main": "apps/shell/src/main.ts",
-                        "polyfills": "apps/shell/src/polyfills.ts",
-                        "tsConfig": "apps/shell/tsconfig.app.json",
-                        "aot": true,
-                        "assets": [
-                            "apps/shell/src/favicon.ico",
-                            "apps/shell/src/assets"
-                        ],
-                        "styles": ["apps/shell/src/styles.scss"],
-                        "scripts": [],
-                        "extraWebpackConfig": "apps/shell/webpack.config.js"
-                    },
-                    "configurations": {
-                        "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "apps/shell/src/environments/environment.ts",
-                                    "with": "apps/shell/src/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
-                                    "maximumError": "10kb"
-                                }
-                            ],
-                            "extraWebpackConfig": "apps/shell/webpack.prod.config.js"
-                        },
-                        "dev": {
-                            "optimization": false,
-                            "sourceMap": true,
-                            "namedChunks": false,
-                            "extractLicenses": false,
-                            "vendorChunk": false,
-                            "buildOptimizer": false
-                        }
-                    }
-                },
-                "serve": {
-                    "builder": "ngx-build-plus:dev-server",
-                    "options": {
-                        "browserTarget": "shell:build",
-                        "extraWebpackConfig": "apps/shell/webpack.config.js",
-                        "port": 5000
-                    },
-                    "configurations": {
-                        "production": {
-                            "browserTarget": "shell:build:production",
-                            "extraWebpackConfig": "apps/shell/webpack.prod.config.js"
-                        },
-                        "dev": {
-                            "browserTarget": "shell:build:dev"
-                        }
-                    }
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
-                    "options": {
-                        "browserTarget": "shell:build"
-                    }
-                },
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "apps/shell/src/**/*.ts",
-                            "apps/shell/src/**/*.html"
-                        ]
-                    }
-                },
-                "test": {
-                    "builder": "ngx-build-plus:karma",
-                    "outputs": ["coverage/apps/shell"],
-                    "options": {
-                        "jestConfig": "apps/shell/jest.config.js",
-                        "passWithNoTests": true,
-                        "extraWebpackConfig": "apps/shell/webpack.config.js"
-                    }
+  "version": 1,
+  "projects": {
+    "mfe1": {
+      "projectType": "application",
+      "root": "apps/mfe1",
+      "sourceRoot": "apps/mfe1/src",
+      "prefix": "nx-mf-demo",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/apps/mfe1",
+            "index": "apps/mfe1/src/index.html",
+            "main": "apps/mfe1/src/main.ts",
+            "polyfills": "apps/mfe1/src/polyfills.ts",
+            "tsConfig": "apps/mfe1/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/mfe1/src/favicon.ico",
+              "apps/mfe1/src/assets"
+            ],
+            "styles": [
+              "apps/mfe1/src/styles.css"
+            ],
+            "scripts": [],
+            "extraWebpackConfig": "apps/mfe1/webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mfe1/src/environments/environment.ts",
+                  "with": "apps/mfe1/src/environments/environment.prod.ts"
                 }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "extraWebpackConfig": "apps/mfe1/webpack.prod.config.js"
             }
+          }
         },
-        "shell-e2e": {
-            "root": "apps/shell-e2e",
-            "sourceRoot": "apps/shell-e2e/src",
-            "projectType": "application",
-            "architect": {
-                "e2e": {
-                    "builder": "@nrwl/cypress:cypress",
-                    "options": {
-                        "cypressConfig": "apps/shell-e2e/cypress.json",
-                        "tsConfig": "apps/shell-e2e/tsconfig.e2e.json",
-                        "devServerTarget": "shell:serve"
-                    },
-                    "configurations": {
-                        "production": {
-                            "devServerTarget": "shell:serve:production"
-                        }
-                    }
-                },
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["apps/shell-e2e/**/*.{js,ts}"]
-                    }
-                }
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "mfe1:build",
+            "extraWebpackConfig": "apps/mfe1/webpack.config.js",
+            "port": 3000
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mfe1:build:production",
+              "extraWebpackConfig": "apps/mfe1/webpack.prod.config.js"
             }
+          }
         },
-        "mfe1": {
-            "projectType": "application",
-            "root": "apps/mfe1",
-            "sourceRoot": "apps/mfe1/src",
-            "prefix": "nx-mf-demo",
-            "architect": {
-                "build": {
-                    "builder": "ngx-build-plus:browser",
-                    "options": {
-                        "outputPath": "dist/apps/mfe1",
-                        "index": "apps/mfe1/src/index.html",
-                        "main": "apps/mfe1/src/main.ts",
-                        "polyfills": "apps/mfe1/src/polyfills.ts",
-                        "tsConfig": "apps/mfe1/tsconfig.app.json",
-                        "aot": true,
-                        "assets": [
-                            "apps/mfe1/src/favicon.ico",
-                            "apps/mfe1/src/assets"
-                        ],
-                        "styles": ["apps/mfe1/src/styles.css"],
-                        "scripts": [],
-                        "extraWebpackConfig": "apps/mfe1/webpack.config.js"
-                    },
-                    "configurations": {
-                        "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "apps/mfe1/src/environments/environment.ts",
-                                    "with": "apps/mfe1/src/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "6kb",
-                                    "maximumError": "10kb"
-                                }
-                            ],
-                            "extraWebpackConfig": "apps/mfe1/webpack.prod.config.js"
-                        }
-                    }
-                },
-                "serve": {
-                    "builder": "ngx-build-plus:dev-server",
-                    "options": {
-                        "browserTarget": "mfe1:build",
-                        "extraWebpackConfig": "apps/mfe1/webpack.config.js",
-                        "port": 3000
-                    },
-                    "configurations": {
-                        "production": {
-                            "browserTarget": "mfe1:build:production",
-                            "extraWebpackConfig": "apps/mfe1/webpack.prod.config.js"
-                        }
-                    }
-                },
-                "extract-i18n": {
-                    "builder": "@angular-devkit/build-angular:extract-i18n",
-                    "options": {
-                        "browserTarget": "mfe1:build"
-                    }
-                },
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "apps/mfe1/src/**/*.ts",
-                            "apps/mfe1/src/**/*.html"
-                        ]
-                    }
-                },
-                "test": {
-                    "builder": "ngx-build-plus:karma",
-                    "outputs": ["coverage/apps/mfe1"],
-                    "options": {
-                        "jestConfig": "apps/mfe1/jest.config.js",
-                        "passWithNoTests": true,
-                        "extraWebpackConfig": "apps/mfe1/webpack.config.js"
-                    }
-                }
-            }
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mfe1:build"
+          }
         },
-        "mfe1-e2e": {
-            "root": "apps/mfe1-e2e",
-            "sourceRoot": "apps/mfe1-e2e/src",
-            "projectType": "application",
-            "architect": {
-                "e2e": {
-                    "builder": "@nrwl/cypress:cypress",
-                    "options": {
-                        "cypressConfig": "apps/mfe1-e2e/cypress.json",
-                        "tsConfig": "apps/mfe1-e2e/tsconfig.e2e.json",
-                        "devServerTarget": "mfe1:serve"
-                    },
-                    "configurations": {
-                        "production": {
-                            "devServerTarget": "mfe1:serve:production"
-                        }
-                    }
-                },
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["apps/mfe1-e2e/**/*.{js,ts}"]
-                    }
-                }
-            }
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/mfe1/src/**/*.ts",
+              "apps/mfe1/src/**/*.html"
+            ]
+          }
         },
-        "shared-auth-lib": {
-            "projectType": "library",
-            "root": "libs/shared/auth-lib",
-            "sourceRoot": "libs/shared/auth-lib/src",
-            "prefix": "nx-mf-demo",
-            "architect": {
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "libs/shared/auth-lib/src/**/*.ts",
-                            "libs/shared/auth-lib/src/**/*.html"
-                        ]
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/shared/auth-lib"],
-                    "options": {
-                        "jestConfig": "libs/shared/auth-lib/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "mfe1-feature-search": {
-            "projectType": "library",
-            "root": "libs/mfe1/feature-search",
-            "sourceRoot": "libs/mfe1/feature-search/src",
-            "prefix": "nx-mf-demo",
-            "architect": {
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "libs/mfe1/feature-search/src/**/*.ts",
-                            "libs/mfe1/feature-search/src/**/*.html"
-                        ]
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/mfe1/feature-search"],
-                    "options": {
-                        "jestConfig": "libs/mfe1/feature-search/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "mfe1-feature-book": {
-            "projectType": "library",
-            "root": "libs/mfe1/feature-book",
-            "sourceRoot": "libs/mfe1/feature-book/src",
-            "prefix": "nx-mf-demo",
-            "architect": {
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "libs/mfe1/feature-book/src/**/*.ts",
-                            "libs/mfe1/feature-book/src/**/*.html"
-                        ]
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/mfe1/feature-book"],
-                    "options": {
-                        "jestConfig": "libs/mfe1/feature-book/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "shared-one-time": {
-            "projectType": "library",
-            "root": "libs/shared/one-time",
-            "sourceRoot": "libs/shared/one-time/src",
-            "prefix": "nx-mf-demo",
-            "architect": {
-                "build": {
-                    "builder": "@nrwl/angular:package",
-                    "options": {
-                        "tsConfig": "libs/shared/one-time/tsconfig.lib.json",
-                        "project": "libs/shared/one-time/ng-package.json"
-                    },
-                    "configurations": {
-                        "production": {
-                            "tsConfig": "libs/shared/one-time/tsconfig.lib.prod.json"
-                        }
-                    }
-                },
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "libs/shared/one-time/src/**/*.ts",
-                            "libs/shared/one-time/src/**/*.html"
-                        ]
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/shared/one-time"],
-                    "options": {
-                        "jestConfig": "libs/shared/one-time/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": [
+            "coverage/apps/mfe1"
+          ],
+          "options": {
+            "jestConfig": "apps/mfe1/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/mfe1/webpack.config.js"
+          }
         }
+      }
     },
-    "cli": {
-        "defaultCollection": "@nrwl/angular"
-    },
-    "schematics": {
-        "@nrwl/angular": {
-            "application": {
-                "linter": "eslint"
-            },
-            "library": {
-                "linter": "eslint"
-            },
-            "storybook-configuration": {
-                "linter": "eslint"
+    "mfe1-e2e": {
+      "root": "apps/mfe1-e2e",
+      "sourceRoot": "apps/mfe1-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/mfe1-e2e/cypress.json",
+            "tsConfig": "apps/mfe1-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mfe1:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mfe1:serve:production"
             }
+          }
         },
-        "@nrwl/angular:application": {
-            "unitTestRunner": "jest",
-            "e2eTestRunner": "cypress"
-        },
-        "@nrwl/angular:library": {
-            "unitTestRunner": "jest"
-        },
-        "@nrwl/angular:component": {
-            "style": "scss"
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/mfe1-e2e/**/*.{js,ts}"
+            ]
+          }
         }
+      }
     },
-    "defaultProject": "shell"
+    "mfe1-feature-book": {
+      "projectType": "library",
+      "root": "libs/mfe1/feature-book",
+      "sourceRoot": "libs/mfe1/feature-book/src",
+      "prefix": "nx-mf-demo",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mfe1/feature-book/src/**/*.ts",
+              "libs/mfe1/feature-book/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/mfe1/feature-book"
+          ],
+          "options": {
+            "jestConfig": "libs/mfe1/feature-book/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mfe1-feature-search": {
+      "projectType": "library",
+      "root": "libs/mfe1/feature-search",
+      "sourceRoot": "libs/mfe1/feature-search/src",
+      "prefix": "nx-mf-demo",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mfe1/feature-search/src/**/*.ts",
+              "libs/mfe1/feature-search/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/mfe1/feature-search"
+          ],
+          "options": {
+            "jestConfig": "libs/mfe1/feature-search/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-auth-lib": {
+      "projectType": "library",
+      "root": "libs/shared/auth-lib",
+      "sourceRoot": "libs/shared/auth-lib/src",
+      "prefix": "nx-mf-demo",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/auth-lib/src/**/*.ts",
+              "libs/shared/auth-lib/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/auth-lib"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/auth-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-one-time": {
+      "projectType": "library",
+      "root": "libs/shared/one-time",
+      "sourceRoot": "libs/shared/one-time/src",
+      "prefix": "nx-mf-demo",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/shared/one-time/tsconfig.lib.json",
+            "project": "libs/shared/one-time/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/shared/one-time/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/one-time/src/**/*.ts",
+              "libs/shared/one-time/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/one-time"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/one-time/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shell": {
+      "projectType": "application",
+      "root": "apps/shell",
+      "sourceRoot": "apps/shell/src",
+      "prefix": "nx-mf-demo",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/apps/shell",
+            "index": "apps/shell/src/index.html",
+            "main": "apps/shell/src/main.ts",
+            "polyfills": "apps/shell/src/polyfills.ts",
+            "tsConfig": "apps/shell/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/shell/src/favicon.ico",
+              "apps/shell/src/assets"
+            ],
+            "styles": [
+              "apps/shell/src/styles.scss"
+            ],
+            "scripts": [],
+            "extraWebpackConfig": "apps/shell/webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/shell/src/environments/environment.ts",
+                  "with": "apps/shell/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "extraWebpackConfig": "apps/shell/webpack.prod.config.js"
+            },
+            "dev": {
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "shell:build",
+            "extraWebpackConfig": "apps/shell/webpack.config.js",
+            "port": 5000
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "shell:build:production",
+              "extraWebpackConfig": "apps/shell/webpack.prod.config.js"
+            },
+            "dev": {
+              "browserTarget": "shell:build:dev"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "shell:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/shell/src/**/*.ts",
+              "apps/shell/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "outputs": [
+            "coverage/apps/shell"
+          ],
+          "options": {
+            "jestConfig": "apps/shell/jest.config.js",
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/shell/webpack.config.js"
+          }
+        }
+      }
+    },
+    "shell-e2e": {
+      "root": "apps/shell-e2e",
+      "sourceRoot": "apps/shell-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/shell-e2e/cypress.json",
+            "tsConfig": "apps/shell-e2e/tsconfig.e2e.json",
+            "devServerTarget": "shell:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "shell:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/shell-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "shell"
 }
